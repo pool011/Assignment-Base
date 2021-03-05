@@ -16,10 +16,19 @@ function findMatches(wordToMatch, restaurants) {
 }
 
 function displayMatches() {
-  console.log(this.value);
+  const matchArray = findMatches(this.value, restaurants);
+  const html = matchArray.map(place => {
+    return `
+      <li>
+        <span class="name">Name: ${place.name}</span>
+        <span class="quarantining">Quaranteening: ${place.ill_workers_restricted}</span>
+      </li>
+    `
+  });
+  
 }
 
 const searchInput  = document.querySelector('.search-bar');
-const suggestions = document.querySelector('.suggestions');
+//const suggestions = document.querySelector('.suggestions');
 
 searchInput.addEventListener('change', displayMatches);
