@@ -11,7 +11,7 @@ fetch(endpoint)
 function findMatches(wordToMatch, restaurants) {
   return restaurants.filter(place => {
     const regex = new RegExp(wordToMatch, 'gi');
-    return place.city.match(regex) // change these values based on what filters we decide on.
+    return place.city.match(regex) || place.name.match(regex) || place.category.match(regex) // change these values based on what filters we decide on.
   });
 }
 
@@ -25,10 +25,21 @@ function displayMatches() {
       </li>
     `
   });
-  
+  console.log('submitted');
 }
 
 const searchInput  = document.querySelector('.search-bar');
-//const suggestions = document.querySelector('.suggestions');
+const suggestions = document.querySelector('.suggestions');
+const submitButton = document.querySelector('.submit-button');
 
-searchInput.addEventListener('change', displayMatches);
+//searchInput.addEventListener('change', displayMatches);
+document.addEventListener('click', displayMatches);
+
+function control(enter) {
+  if (enter.keycode === 13) {
+    enter.preventDefault();
+    submitButton.click()
+  }
+}
+
+document.addEventListener('keydown', control);
