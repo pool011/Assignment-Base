@@ -11,7 +11,7 @@ fetch(endpoint)
 function findMatches(wordToMatch, restaurants) {
   return restaurants.filter(place => {
     const regex = new RegExp(wordToMatch, 'gi');
-    return place.city.match(regex) || place.name.match(regex) || place.category.match(regex) // change these values based on what filters we decide on.
+    return place.city.match(regex) || place.name.match(regex) || place.category.match(regex)
   });
 }
 
@@ -20,13 +20,14 @@ function displayMatches() {
   const html = matchArray.map(place => {
     return `
       <li>
-        <span class="name">Name: ${place.name}</span> <br>
-        <span class="city">City: ${place.city}</span> <br>
+        <span class="name">${place.name}</span> <br>
+        <span class="address">${place.address_line_1} <br>
+        ${place.city}, ${place.state} ${place.zip}</span> <br>
         <span class="category">Category: ${place.category} <br>
         <span class="quarantining">Quarantining: ${place.ill_workers_restricted}</span>
       </li>
     `
-  });
+  }).join('');
   suggestions.innerHTML= html;
 }
 
