@@ -27,7 +27,7 @@ function displayMatches() {
       </li>
     `
   });
-   suggestions.innerHTML= html;
+  suggestions.innerHTML= html;
 }
 
 const searchInput  = document.querySelector('.search-bar');
