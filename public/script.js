@@ -20,20 +20,22 @@ function displayMatches() {
   const html = matchArray.map(place => {
     return `
       <li>
-        <span class="name">Name: ${place.name}</span>
-        <span class="quarantining">Quaranteening: ${place.ill_workers_restricted}</span>
+        <span class="name">Name: ${place.name}</span> <br>
+        <span class="city">City: ${place.city}</span> <br>
+        <span class="category">Category: ${place.category} <br>
+        <span class="quarantining">Quarantining: ${place.ill_workers_restricted}</span>
       </li>
     `
   });
-  console.log('submitted');
+   suggestions.innerHTML= html;
 }
 
 const searchInput  = document.querySelector('.search-bar');
 const suggestions = document.querySelector('.suggestions');
 const submitButton = document.querySelector('.submit-button');
 
-//searchInput.addEventListener('change', displayMatches);
-document.addEventListener('click', displayMatches);
+searchInput.addEventListener('change', displayMatches);
+//document.addEventListener('click', displayMatches);
 
 function control(enter) {
   if (enter.keycode === 13) {
