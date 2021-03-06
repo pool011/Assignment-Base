@@ -31,45 +31,26 @@ async function windowActions() {
     return results;//.slice(0,9);
   }
 
-<<<<<<< HEAD
 function displayMatches(event) {
   const matchArray = findMatches(event.target.value, restaurants);
   const html = matchArray.map(place => {
     return `
     <div class="box">
       <li>
+      <address>
         <h2 class="subtitle is-3"><span class="name">${place.name}</span></h2>
         <span class="category">${place.category}</span> <br>
         <span class="address">${place.address_line_1}</span> <br>
-        ${place.city}, ${place.state} ${place.zip}</span> <br>
+        ${place.city}, ${place.state} ${place.zip} <br>
         <span class="category">${place.category} <br>
         <span class="quarantining">Quarantining: ${place.ill_workers_restricted}</span>
+      </address>
       </li>
     </div>
     `
   }).join('');
   suggestions.innerHTML= html;
 }
-=======
-  function displayMatches(event) {
-    const matchArray = findMatches(event.target.value, restaurants);
-    const html = matchArray.map(place => {
-      return `
-      <div class="box">
-        <li>
-          <span class="name">${place.name}</span> <br>
-          <span class="category">${place.category}</span> <br>
-          <span class="address">${place.address_line_1}</span> <br>
-          ${place.city}, ${place.state} ${place.zip}</span> <br>
-          <span class="category">${place.category} <br>
-          <span class="quarantining">Quarantining: ${place.ill_workers_restricted}</span>
-        </li>
-      </div>
-      `
-    }).join('');
-    suggestions.innerHTML= html;
-  }
->>>>>>> afba87252ce1c03b3295db29bb54c3cfdbb9428b
 
   const searchInput  = document.querySelector('.input');
   const suggestions = document.querySelector('.suggestions');
