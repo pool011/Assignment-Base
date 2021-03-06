@@ -1,3 +1,7 @@
+/*
+Authors: Jonah Pool, Cole Daitch, Colin Mannix
+*/
+
 async function windowActions() {
   const endpoint = 'https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json';
 
