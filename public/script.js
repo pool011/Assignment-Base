@@ -16,6 +16,7 @@ function displayMatches() {
   const matchArray = findMatches(this.value, restaurants);
   const html = matchArray.map(place => {
     return `
+    <div class="box">
       <li>
         <span class="name">${place.name}</span> <br>
         <span class="category">${place.category} <br>
@@ -24,6 +25,7 @@ function displayMatches() {
         <span class="category">${place.category} <br>
         <span class="quarantining">Quarantining: ${place.ill_workers_restricted}</span>
       </li>
+    </div>
     `
   }).join('');
   suggestions.innerHTML= html;
