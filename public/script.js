@@ -1,12 +1,8 @@
+async function windowActions() {
 const endpoint = 'https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json';
-const restaurants = [];
-  
-fetch(endpoint)
-  .then(blob => blob.json())
-  .then(data => restaurants.push(...data));
-    
-  //console.log(restaurants);
-  //console.log(restaurants);
+
+const request = await fetch(endpoint);
+const restaurants = await request.json();
 
 function findMatches(wordToMatch, restaurants) {
   const tempArr = restaurants.filter(place => {
@@ -32,35 +28,37 @@ function findMatches(wordToMatch, restaurants) {
   return results;//.slice(0,9);
 }
 
-function displayMatches() {
-  const matchArray = findMatches(this.value, restaurants);
+function displayMatches(event) {
+  const matchArray = findMatches(event.target.value, restaurants);
   const html = matchArray.map(place => {
     return `
+    <div class="box">
       <li>
+<<<<<<< HEAD
         <span class="name">${place.name} ${place.establishment_id}</span> <br>
         <span class="address">${place.address_line_1} <br>
         ${place.city}, ${place.state} ${place.zip}</span> <br>
         <span class="category">Category: ${place.category} <br>
         <span class="quarantining">Quarantining: ${place.ill_workers_restricted}</br></span>
+=======
+        <span class="name">${place.name}</span> <br>
+        <span class="category">${place.category}</span> <br>
+        <span class="address">${place.address_line_1}</span> <br>
+        ${place.city}, ${place.state} ${place.zip}</span> <br>
+        <span class="category">${place.category} <br>
+        <span class="quarantining">Quarantining: ${place.ill_workers_restricted}</span>
+>>>>>>> b123dc4fa7baa6f81f885c8eb0536934bae2dcbb
       </li>
+    </div>
     `
   }).join('');
   suggestions.innerHTML= html;
 }
 
-const searchInput  = document.querySelector('.search-bar');
+const searchInput  = document.querySelector('.input');
 const suggestions = document.querySelector('.suggestions');
-const submitButton = document.querySelector('.submit-button');
 
-searchInput.addEventListener('change', displayMatches);
-searchInput.addEventListener('keyup', displayMatches);
-//document.addEventListener('click', displayMatches);
+searchInput.addEventListener('keyup', (evt) => { displayMatches(evt) });
 
-function control(enter) {
-  if (enter.keycode === 13) {
-    enter.preventDefault();
-    submitButton.click()
-  }
 }
-
-document.addEventListener('keydown', control);
+window.onload = windowActions();
