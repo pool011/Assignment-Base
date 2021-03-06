@@ -1,16 +1,37 @@
 async function windowActions() {
-const endpoint = 'https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json';
+  const endpoint = 'https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json';
 
-const request = await fetch(endpoint);
-const restaurants = await request.json();
+  const request = await fetch(endpoint);
+  const restaurants = await request.json();
 
-function findMatches(wordToMatch, restaurants) {
-  return restaurants.filter(place => {
-    const regex = new RegExp(wordToMatch, 'gi');
-    return place.city.match(regex) || place.name.match(regex) || place.category.match(regex)
-  });
-}
+  function findMatches(wordToMatch, restaurants) {
+    const tempArr = restaurants.filter(place => {
+      const regex = new RegExp(wordToMatch, 'gi');
+      return place.city.match(regex) || place.name.match(regex) || place.category.match(regex)
+    });
+    const tempSet = new Set(tempArr.map(place => place.establishment_id));
+    const unique_ids = Array.from(tempSet).slice(0,9);
+    console.log(unique_ids);
+    let id_length  = unique_ids.length - 1;
+    const results = [];
+    //iterate through the list
+    while (id_length > 0) {
+      for (place in restaurants) {
+        // compare the value of the restaurants key to 
+        if (restaurants[place].establishment_id == unique_ids[id_length] && unique_ids.length > 0) {
+          console.log(unique_ids.pop());
+          id_length = unique_ids.length - 1;
+          console.log(id_length);
+          let catThis = restaurants[place];
+          results.push(catThis);
+        }
+      }
+    }
+    
+    return results;//.slice(0,9);
+  }
 
+<<<<<<< HEAD
 function displayMatches(event) {
   const matchArray = findMatches(event.target.value, restaurants);
   const html = matchArray.map(place => {
@@ -29,11 +50,31 @@ function displayMatches(event) {
   }).join('');
   suggestions.innerHTML= html;
 }
+=======
+  function displayMatches(event) {
+    const matchArray = findMatches(event.target.value, restaurants);
+    const html = matchArray.map(place => {
+      return `
+      <div class="box">
+        <li>
+          <span class="name">${place.name}</span> <br>
+          <span class="category">${place.category}</span> <br>
+          <span class="address">${place.address_line_1}</span> <br>
+          ${place.city}, ${place.state} ${place.zip}</span> <br>
+          <span class="category">${place.category} <br>
+          <span class="quarantining">Quarantining: ${place.ill_workers_restricted}</span>
+        </li>
+      </div>
+      `
+    }).join('');
+    suggestions.innerHTML= html;
+  }
+>>>>>>> afba87252ce1c03b3295db29bb54c3cfdbb9428b
 
-const searchInput  = document.querySelector('.input');
-const suggestions = document.querySelector('.suggestions');
+  const searchInput  = document.querySelector('.input');
+  const suggestions = document.querySelector('.suggestions');
 
-searchInput.addEventListener('keyup', (evt) => { displayMatches(evt) });
+  searchInput.addEventListener('keyup', (evt) => { displayMatches(evt) });
 
 }
 window.onload = windowActions();
