@@ -29,18 +29,10 @@ function displayMatches() {
   suggestions.innerHTML= html;
 }
 
-const searchInput  = document.querySelector('.search-bar');
+const searchInput  = document.querySelector('.input');
 const suggestions = document.querySelector('.suggestions');
-const submitButton = document.querySelector('.submit-button');
 
 searchInput.addEventListener('change', displayMatches);
 searchInput.addEventListener('keyup', displayMatches);
-
-function control(enter) {
-  if (enter.keycode === 13) {
-    enter.preventDefault();
-    submitButton.click()
-  }
-}
 
 document.addEventListener('keydown', control);
