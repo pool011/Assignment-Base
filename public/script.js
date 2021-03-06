@@ -5,9 +5,6 @@ fetch(endpoint)
   .then(blob => blob.json())
   .then(data => restaurants.push(...data));
     
-  //console.log(restaurants);
-  //console.log(restaurants);
-
 function findMatches(wordToMatch, restaurants) {
   return restaurants.filter(place => {
     const regex = new RegExp(wordToMatch, 'gi');
@@ -21,9 +18,10 @@ function displayMatches() {
     return `
       <li>
         <span class="name">${place.name}</span> <br>
+        <span class="category">${place.category} <br>
         <span class="address">${place.address_line_1} <br>
         ${place.city}, ${place.state} ${place.zip}</span> <br>
-        <span class="category">Category: ${place.category} <br>
+        <span class="category">${place.category} <br>
         <span class="quarantining">Quarantining: ${place.ill_workers_restricted}</span>
       </li>
     `
@@ -37,7 +35,6 @@ const submitButton = document.querySelector('.submit-button');
 
 searchInput.addEventListener('change', displayMatches);
 searchInput.addEventListener('keyup', displayMatches);
-//document.addEventListener('click', displayMatches);
 
 function control(enter) {
   if (enter.keycode === 13) {
