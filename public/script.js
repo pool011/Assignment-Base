@@ -21,11 +21,11 @@ function displayMatches() {
     return `
       <li>
         <span class="name">Name: ${place.name}</span>
-        <span class="quarantining">Quaranteening: ${place.ill_workers_restricted}</span>
+        <span class="quarantining">Quarantining: ${place.ill_workers_restricted}</span>
       </li>
     `
   });
-  console.log('submitted');
+   suggestions.innerHTML= html;
 }
 
 const searchInput  = document.querySelector('.search-bar');
