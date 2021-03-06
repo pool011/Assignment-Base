@@ -17,12 +17,9 @@ async function windowActions() {
     //iterate through the list
     while (id_length >= 0) {
       for (place in restaurants) {
-        // compare the value of the restaurants key to 
+        // compare the value of the restaurants key to value in unique keys
         if (restaurants[place].establishment_id == unique_ids[id_length] && unique_ids.length > 0) {
           
-          
-          //console.log(id_length);
-          console.log(restaurants[place]);
           let catThis = restaurants[place];
           results.push(catThis);
           console.log(unique_ids.pop());
@@ -31,7 +28,7 @@ async function windowActions() {
       }
     }
     
-    return results;//.slice(0,9);
+    return results;
   }
 
 function displayMatches(event) {
