@@ -14,17 +14,20 @@ async function windowActions() {
     console.log(unique_ids);
     let id_length  = unique_ids.length - 1;
     const results = [];
-    for (place in restaurants) {
-      if (restaurants[place].establishment_id == unique_ids[id_length]) {
-        //console.log(id);
-        //console.log(unique_ids.slice(id_length-10,id_length));
-        console.log(unique_ids.pop());
-        id_length -= 1;
-        //console.log(place);
-        let catThis = restaurants[place];
-        results.push(catThis);
+    //iterate through the list
+    while (id_length > 0) {
+      for (place in restaurants) {
+        // compare the value of the restaurants key to 
+        if (restaurants[place].establishment_id == unique_ids[id_length] && unique_ids.length > 0) {
+          console.log(unique_ids.pop());
+          id_length = unique_ids.length - 1;
+          console.log(id_length);
+          let catThis = restaurants[place];
+          results.push(catThis);
+        }
       }
     }
+    
     return results;//.slice(0,9);
   }
 
