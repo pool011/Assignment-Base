@@ -17,7 +17,7 @@ function displayMatches(event) {
     return `
     <div class="box">
       <li>
-        <span class="name">${place.name}</span> <br>
+        <h2 class="subtitle is-3"><span class="name">${place.name}</span></h2>
         <span class="category">${place.category}</span> <br>
         <span class="address">${place.address_line_1}</span> <br>
         ${place.city}, ${place.state} ${place.zip}</span> <br>

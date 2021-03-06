@@ -6,9 +6,9 @@ body {
 }
 
 .hero-body {
-    background-color: yellow;
+    background-color: rgb(165, 0, 0);
 }
 
 .box {
-    background-image: linear-gradient(red, white);
+    background-image: linear-gradient(rgb(255, 255, 100), white);
 }
