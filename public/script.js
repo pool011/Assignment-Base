@@ -35,6 +35,7 @@ const suggestions = document.querySelector('.suggestions');
 const submitButton = document.querySelector('.submit-button');
 
 searchInput.addEventListener('change', displayMatches);
+searchInput.addEventListener('keyup', displayMatches);
 //document.addEventListener('click', displayMatches);
 
 function control(enter) {
